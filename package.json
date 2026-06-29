@@ -1,0 +1,23 @@
+{
+  "name": "linkedlin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradeepjadhav341984/linkedlin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradeepjadhav341984/linkedlin/issues"
+  },
+  "homepage": "https://github.com/pradeepjadhav341984/linkedlin#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1"
+  }
+}
