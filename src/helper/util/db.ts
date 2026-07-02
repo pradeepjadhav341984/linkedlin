@@ -1,6 +1,4 @@
  import mysql from "mysql2/promise";
-
-
 class Database {
 
     private connection: mysql.Connection | null = null;

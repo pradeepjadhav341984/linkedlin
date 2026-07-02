@@ -1,95 +1,81 @@
+import * as dotenv from "dotenv";
+
+dotenv.config({
+    path: "./src/helper/env/.env.dev"
+});
 import {
     Before,
     After,
     BeforeAll,
     AfterAll,
-    Status
+    Status,
+    setDefaultTimeout
 } from "@cucumber/cucumber";
 
 import {
-    chromium,
     Browser,
-    Page
+    chromium
 } from "@playwright/test";
 
-import * as fs from "fs";
+import { fixture } from "./pageFixture";
+import { LoginPage } from "../pages/loginPage";
 
+setDefaultTimeout(60 * 1000);
 
 let browser: Browser;
-export let page: Page;
-
 
 // Runs once before all scenarios
-BeforeAll(async () => {
+BeforeAll(async function () {
 
     browser = await chromium.launch({
 
-        headless: false
+        headless: false,
+
+        args: [
+            "--start-maximized"
+        ]
 
     });
 
 });
-
 
 // Runs before every scenario
 Before(async function () {
 
+    fixture.page = await browser.newPage({
 
-    page = await browser.newPage();
-
-
-    await page.setViewportSize({
-
-        width: 1280,
-
-        height: 720
+        viewport: null
 
     });
 
+    fixture.loginPage = new LoginPage(fixture.page);
 
 });
-
 
 // Runs after every scenario
 After(async function (scenario) {
 
-
     if (scenario.result?.status === Status.FAILED) {
 
+        const screenshot = await fixture.page.screenshot({
 
-        const screenshot = await page.screenshot({
+            path: `reports/screenshots/${Date.now()}.png`,
 
-            path:
-            `reports/screenshots/${Date.now()}.png`,
-
-            fullPage:true
+            fullPage: true
 
         });
 
-
-        await this.attach(
-
-            screenshot,
-
-            "image/png"
-
-        );
-
+        await this.attach(screenshot, "image/png");
 
     }
 
-
-    await page.close();
-
+    await fixture.page.close();
 
 });
 
-
 // Runs once after all scenarios
-AfterAll(async () => {
-
+AfterAll(async function () {
 
     await browser.close();
-
 
 });
