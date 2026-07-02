@@ -1,30 +1,19 @@
 module.exports = {
+  default: {
+    requireModule: ["ts-node/register"],
 
-default: {
+    require: [
+      "src/tests/steps/**/*.ts",
+      "src/hooks/**/*.ts"
+    ],
 
-requireModule:[
-"ts-node/register"
-],
+    paths: [
+      "src/tests/features/**/*.feature"
+    ],
 
-require:[
-"step-definitions/**/*.ts",
-"hooks/**/*.ts"
-],
-
-format:[
-
-"progress",
-
-"html:reports/cucumber-report.html"
-
-],
-
-paths:[
-
-"features/**/*.feature"
-
-]
-
-}
-
-}
+    format: [
+      "progress",
+      "html:reports/cucumber-report.html"
+    ]
+  }
+};
