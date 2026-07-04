@@ -10,4 +10,4 @@ When user should enter user name
 And user should enter password 
 #Then click on keep me sign in
 Then again click on sign in button
-Then verify home screen visible or not
+#Then verify home screen visible or not

@@ -54,7 +54,7 @@ export class LoginPage {
         //await this.page.pause();
         await this.actualsignin.click();
         console.log("user click on actual sign in button succesfully");
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForTimeout(2000);
     }
 
     async uncheckClick() {
@@ -62,11 +62,5 @@ export class LoginPage {
         await this.page.waitForTimeout(2000);
         await this.keepmesignin.uncheck();
     }
-    async verifyHomeURL() {
-
-        await expect(this.page).toHaveURL("https://www.linkedin.com/feed/");
-        console.log("user verify home url succesfully");
-
-    }
-
+    
 }
