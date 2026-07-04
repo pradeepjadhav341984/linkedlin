@@ -27,13 +27,13 @@ let browser: Browser;
 // Runs once before all scenarios
 BeforeAll(async function () {
 
+    const isCI = process.env.CI === "true";
+
     browser = await chromium.launch({
 
-        headless: false,
+        headless: isCI,
 
-        args: [
-            "--start-maximized"
-        ]
+        args: isCI ? [] : ["--start-maximized"]
 
     });
 
