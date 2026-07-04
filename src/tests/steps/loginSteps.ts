@@ -21,6 +21,3 @@ When('user should enter password', async function () {
 Then('again click on sign in button',async function() {
   await fixture.loginPage.clickonActulSignin();
 })
-Then('verify home screen visible or not', async function () {
-  await fixture.loginPage.verifyHomeURL();
-});

@@ -1,58 +1,31 @@
- const report = require("multiple-cucumber-html-reporter");
-const fs = require("fs");
+const reporter = require("cucumber-html-reporter");
 
+const options = {
 
-report.generate({
+    theme: "bootstrap",
 
-    jsonDir: "test-results",
+    jsonFile: "reports/cucumber-report.json",
 
-    reportPath: "test-results/html-report",
+    output: "reports/cucumber-html-report.html",
 
+    reportSuiteAsScenarios: true,
+
+    launchReport: true,
 
     metadata: {
 
-        browser: {
-            name: "chrome",
-            version: "latest"
-        },
+        "Application": "LinkedIn",
 
-        device: "Local Machine",
+        "Browser": "Chromium",
 
-        platform: {
-            name: "windows",
-            version: "11"
-        }
+        "Platform": "Windows",
 
-    },
+        "Framework": "Playwright + Cucumber",
 
+        "Executed By": "Pradeep Jadhav"
 
-    customData: {
+    }
 
-        title: "Automation Test Execution Report",
+};
 
-        data: [
-
-            {
-                label: "Project",
-                value: "Playwright Cucumber Framework"
-            },
-
-            {
-                label: "Environment",
-                value: process.env.ENV || "dev"
-            },
-
-            {
-                label: "Execution Date",
-                value: new Date().toLocaleString()
-            }
-
-        ]
-
-    },
-
-
-
-    customStyle: "src/reports/custom.css"
-
-});
+reporter.generate(options);
