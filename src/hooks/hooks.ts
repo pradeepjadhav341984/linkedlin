@@ -19,6 +19,7 @@ import {
 
 import { fixture } from "./pageFixture";
 import { LoginPage } from "../pages/loginPage";
+import { JobPage } from "../pages/jobPage";
 
 setDefaultTimeout(60 * 1000);
 
@@ -49,6 +50,7 @@ Before(async function () {
     });
 
     fixture.loginPage = new LoginPage(fixture.page);
+    fixture.jobPage = new JobPage(fixture.page);
 
 });
 
