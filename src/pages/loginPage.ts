@@ -99,6 +99,9 @@ export class LoginPage {
     async clickonActulSignin() {
         //await this.page.waitForTimeout(2000);
         //await this.page.pause();
+        await expect(this.actualsignin).toBeVisible({
+timeout: 15000
+});
         await this.actualsignin.click();
         console.log("user click on actual sign in button succesfully");
         await this.page.waitForTimeout(2000);

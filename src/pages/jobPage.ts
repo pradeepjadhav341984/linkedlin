@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class JobPage {
     private jobsTab: Locator;
-    private preferencesLabel: Locator;
+    private jobsBasedOnPreferenceLabel: Locator;
     private easyApplyLink: Locator;
     private easyApplyButton: Locator;
     private nextButton: Locator;
@@ -10,7 +10,9 @@ export class JobPage {
 
     constructor(private page: Page) {
         this.jobsTab = page.locator('a[href*="/jobs"], a:has-text("Jobs"), button:has-text("Jobs"), [role="tab"]:has-text("Jobs")').first();
-        this.preferencesLabel = page.locator('text=/Jobs based on your preferences/i').first();
+        this.jobsBasedOnPreferenceLabel = page.getByRole('heading', {
+  name: /Jobs based on your preferences/i
+});
         this.easyApplyLink = page.locator('a:has-text("Easy Apply"), button:has-text("Easy Apply"), div:has-text("Easy Apply"), [role="button"]:has-text("Easy Apply")');
         this.easyApplyButton = page.locator('button:has-text("Easy Apply"), a:has-text("Easy Apply"), [role="button"]:has-text("Easy Apply"), input[type="button"][value="Easy Apply"]');
         this.nextButton = page.locator('button:has-text("Next"), input[type="button"][value="Next"], button:has-text("Continue"), button:has-text("Continue to review")');
